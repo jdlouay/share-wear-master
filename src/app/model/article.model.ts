@@ -3,7 +3,7 @@ export class Article {
     taille?: string;
     desc?: string;
     etat?: string;
-    photo?: string;
+    photo?: string[];
     prix?: number;  
-    nom?: string;
+    
 }

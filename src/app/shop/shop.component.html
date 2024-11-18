@@ -1,33 +1,28 @@
 <div class="container">
-    <div class="content">
-
-        <table>
-            <tr>
-                <td>
-                    <div class="image">
-                        <img src="assets/one.png" alt="ee" srcset="">
-                        <p class="name">brown coat</p>
-                        <p class=" price"> Price: <strong>100 points</strong></p>
-                        <!-- <button class="bt">ajouter au panier</button> -->
-                    </div>
-                </td>
-
-                <td>
-                    <div class="image">
-                        <img src="assets/two.png" alt="ee" srcset="">
-                        <p class="name">denim jacket</p>
-                        <p class=" price"> Price: <strong>75 points</strong></p>
-                        <!-- <button class="bt">ajouter au panier</button> -->
-                    </div>
-                  
-                </td>
-            </tr>
-        </table>
-
-
-
-
-
-
+    <div class="gallery-container">
+      <!-- Boucle pour afficher les articles -->
+      <div *ngFor="let article of clothes; let i = index" class="gallery-item">
+        <!-- Conteneur de l'image -->
+        <div class="image-container" (mouseover)="hoveredIndex = i" (mouseout)="hoveredIndex = -1">
+          <img [src]="article.photo[currentImageIndexes[i]]" alt="Image" class="gallery-image" />
+        </div>
+        
+        <!-- Description de l'article -->
+        <div class="description">
+          <p>{{ article.desc }} - {{ article.etat }}</p>
+          <p>Prix : {{ article.prix }} Points</p>
+        </div>
+  
+        <!-- Informations supplémentaires affichées au survol -->
+        <div *ngIf="hoveredIndex === i" class="hover-content">
+          <p>Taille disponible : {{ article.taille }}</p>
+          <button class="add-to-cart-button" (click)="addToCart(article)">Ajouter au panier</button>
+        </div>
+  
+        <!-- Boutons pour changer d'image -->
+        <button class="nav-button" (click)="previousImage(i)">&#8249;</button>
+        <button class="nav-button" (click)="nextImage(i)">&#8250;</button>
+      </div>
     </div>
-</div>
+  </div>
+  
